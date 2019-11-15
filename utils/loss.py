@@ -27,8 +27,6 @@ class SegmentationLosses(object):
 
         loss = criterion(logit, target.long())
 
-        if self.batch_average:
-            loss /= n
 
         return loss
 
@@ -44,9 +42,6 @@ class SegmentationLosses(object):
         if alpha is not None:
             logpt *= alpha
         loss = -((1 - pt) ** gamma) * logpt
-
-        if self.batch_average:
-            loss /= n
 
         return loss
 
